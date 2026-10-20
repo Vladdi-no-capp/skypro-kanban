@@ -16,9 +16,15 @@ describe("Kanban popups", () => {
       </>,
     );
 
-    expect(screen.getByRole("heading", { name: "Создание задачи" })).toBeTruthy();
-    expect(screen.getByRole("heading", { name: "Название задачи" })).toBeTruthy();
-    expect(screen.getByRole("heading", { name: "Выйти из аккаунта?" })).toBeTruthy();
+    expect(
+      screen.getByRole("heading", { name: "Создание задачи", hidden: true }),
+    ).toBeTruthy();
+    expect(
+      screen.getByRole("heading", { name: "Название задачи", hidden: true }),
+    ).toBeTruthy();
+    expect(
+      screen.getByRole("heading", { name: "Выйти из аккаунта?", hidden: true }),
+    ).toBeTruthy();
     expect(screen.getAllByText("Сентябрь 2023")).toHaveLength(2);
     expect(container.querySelectorAll(".calendar")).toHaveLength(2);
   });

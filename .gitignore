@@ -4,3 +4,5 @@
 /dist/
 /.superpowers/
 /.legacy-react-router-backup/
+/.agents/
+/.dockerignore
