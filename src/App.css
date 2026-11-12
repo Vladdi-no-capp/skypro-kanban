@@ -783,7 +783,7 @@ body {
     padding: 0;
 }
 .header__pop-user-set {
-    display: none;
+    display: block;
     position: absolute;
     top: 61px;
     right: 0;
@@ -796,6 +796,19 @@ body {
     padding: 34px;
     text-align: center;
     z-index: 2;
+}
+
+.loading {
+  width: 100%;
+  min-height: calc(100vh - 70px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #eaeef6;
+  color: #565eef;
+  font-size: 24px;
+  font-weight: 600;
+  text-align: center;
 }
 
 .main {
