@@ -1,31 +1,35 @@
-export default function Card({ task }) {
-  const topicColors = {
-    "Web Design": "_orange",
-    "Research": "_green",
-    "Copywriting": "_purple",
-  };
+import {
+  CardBox,
+  CardGroup,
+  CardItem,
+  CardTheme,
+  CardButton,
+  CardContent,
+  CardDate,
+  CardTitle,
+} from "./Card.styled.js";
 
-  const colorClass = topicColors[task.topic] || "";
+export default function Card({ task }) {
   const clipPathId = `calendar-clip-${task.id}`;
 
   return (
-    <article className="cards__item">
-      <div className="cards__card card">
-        <div className="card__group">
-          <div className={`card__theme ${colorClass}`}>
-            <p className={colorClass}>{task.topic}</p>
-          </div>
-          <a className="card__btn" href="#popBrowse" aria-label={`Открыть ${task.title}`}>
+    <CardItem>
+      <CardBox>
+        <CardGroup>
+          <CardTheme $topic={task.topic}>
+            <p>{task.topic}</p>
+          </CardTheme>
+          <CardButton href="#popBrowse" aria-label={`Открыть ${task.title}`}>
             <div />
             <div />
             <div />
-          </a>
-        </div>
-        <div className="card__content">
+          </CardButton>
+        </CardGroup>
+        <CardContent>
           <a href="#popBrowse">
-            <h3 className="card__title">{task.title}</h3>
+            <CardTitle>{task.title}</CardTitle>
           </a>
-          <div className="card__date">
+          <CardDate>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="13"
@@ -56,9 +60,9 @@ export default function Card({ task }) {
               </defs>
             </svg>
             <p>{task.date}</p>
-          </div>
-        </div>
-      </div>
-    </article>
+          </CardDate>
+        </CardContent>
+      </CardBox>
+    </CardItem>
   );
 }

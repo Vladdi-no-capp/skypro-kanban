@@ -5,6 +5,11 @@ import PopBrowse from "./components/PopBrowse/PopBrowse.jsx";
 import PopExit from "./components/PopExit/PopExit.jsx";
 import PopNewCard from "./components/PopNewCard/PopNewCard.jsx";
 import { useEffect, useState } from "react";
+import {
+  GlobalStyle,
+  Loading,
+  Wrapper,
+} from "./App.styled.js";
 
 export default function App() {
   const [ isLoading, setIsLoading] = useState(true);
@@ -17,16 +22,19 @@ export default function App() {
   }, []);
 
   return (
-    <div className="wrapper">
+    <>
+    <GlobalStyle />
+    <Wrapper data-testid="app-wrapper">
       <PopExit />
       <PopNewCard />
       <PopBrowse />
       <Header />
    {isLoading ? (
-  <div className="loading">Данные загружаются</div>
-) : (
-  <Main />
-)}
-    </div>
+  <Loading>Данные загружаются</Loading>
+      ) : (
+        <Main />
+      )}
+    </Wrapper>
+    </>
   );
 }
