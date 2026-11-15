@@ -1,5 +1,11 @@
 import Column from "../Column/Column.jsx";
 import { cardList } from "../../../data.js";
+import { Container } from "../Common/Common.styled.js";
+import {
+  MainBlock,
+  MainContent,
+  MainWrapper,
+} from "./Main.styled.js";
 
 const statuses = [
   "Без статуса",
@@ -11,10 +17,10 @@ const statuses = [
 
 export default function Main() {
   return (
-    <main className="main">
-      <div className="container">
-        <div className="main__block">
-          <div className="main__content">
+    <MainWrapper>
+      <Container>
+        <MainBlock>
+          <MainContent>
             {statuses.map((status) => (
               <Column
                 key={status}
@@ -22,9 +28,9 @@ export default function Main() {
                 tasks={cardList.filter((card) => card.status === status)}
               />
             ))}
-          </div>
-        </div>
-      </div>
-    </main>
+          </MainContent>
+        </MainBlock>
+      </Container>
+    </MainWrapper>
   );
 }

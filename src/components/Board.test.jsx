@@ -11,7 +11,7 @@ describe("Kanban board", () => {
   test("renders all columns in the supplied order with every task", () => {
     const { container } = render(<Main />);
     const columnTitles = Array.from(
-      container.querySelectorAll(".column__title p"),
+      container.querySelectorAll("h2"),
     ).map((title) => title.textContent);
 
     expect(columnTitles).toEqual([
@@ -21,9 +21,8 @@ describe("Kanban board", () => {
       "Тестирование",
       "Готово",
     ]);
-    expect(container.querySelectorAll(".cards__item")).toHaveLength(
-  cardList.length,
-);
+   expect(screen.getAllByRole("article")).toHaveLength(cardList.length);
+
 
 cardList.forEach((card) => {
   expect(screen.getByText(card.title)).toBeTruthy();

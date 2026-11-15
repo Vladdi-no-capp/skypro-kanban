@@ -10,13 +10,13 @@ test("renders the complete homework page without React warnings", async () => {
   try {
     const { container } = render(<App />);
 
-    expect(container.querySelector(".wrapper")).toBeTruthy();
-    expect(container.querySelector("header.header")).toBeTruthy();
+    expect(screen.getByTestId("app-wrapper")).toBeTruthy();
+    expect(container.querySelector("header")).toBeTruthy();
   expect(screen.getByText("Данные загружаются")).toBeTruthy();
 
 await waitFor(
   () => {
-    expect(container.querySelectorAll(".main__column")).toHaveLength(5);
+    expect(container.querySelectorAll("main section")).toHaveLength(5);
   },
   { timeout: 3000 },
 );
