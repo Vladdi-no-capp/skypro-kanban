@@ -1,10 +1,10 @@
 import { afterEach, expect, test, vi } from "vitest";
-import { cleanup, render, screen } from "@testing-library/react";
+import { cleanup, render, screen, waitFor } from "@testing-library/react";
 import App from "./App.jsx";
 
 afterEach(cleanup);
 
-test("renders the complete homework page without React warnings", () => {
+test("renders the complete homework page without React warnings", async () => {
   const consoleError = vi.spyOn(console, "error").mockImplementation(() => {});
 
   try {
@@ -12,7 +12,14 @@ test("renders the complete homework page without React warnings", () => {
 
     expect(container.querySelector(".wrapper")).toBeTruthy();
     expect(container.querySelector("header.header")).toBeTruthy();
+  expect(screen.getByText("Данные загружаются")).toBeTruthy();
+
+await waitFor(
+  () => {
     expect(container.querySelectorAll(".main__column")).toHaveLength(5);
+  },
+  { timeout: 3000 },
+);
     expect(container.querySelector("#popExit")).toBeTruthy();
     expect(container.querySelector("#popNewCard")).toBeTruthy();
     expect(container.querySelector("#popBrowse")).toBeTruthy();

@@ -1,12 +1,19 @@
 export default function Card({ task }) {
+  const topicColors = {
+    "Web Design": "_orange",
+    "Research": "_green",
+    "Copywriting": "_purple",
+  };
+
+  const colorClass = topicColors[task.topic] || "";
   const clipPathId = `calendar-clip-${task.id}`;
 
   return (
     <article className="cards__item">
       <div className="cards__card card">
         <div className="card__group">
-          <div className={`card__theme ${task.colorClass}`}>
-            <p className={task.colorClass}>{task.category}</p>
+          <div className={`card__theme ${colorClass}`}>
+            <p className={colorClass}>{task.topic}</p>
           </div>
           <a className="card__btn" href="#popBrowse" aria-label={`Открыть ${task.title}`}>
             <div />
