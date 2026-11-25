@@ -23,12 +23,7 @@ export default function PopUser() {
     />
   </ThemeRow>
 
-  <LogoutButton
-    type="button"
-    onClick={() => {
-      window.location.hash = "popExit";
-    }}
-  >
+  <LogoutButton to="/exit">
     Выйти
   </LogoutButton>
 </PopUserWrapper>

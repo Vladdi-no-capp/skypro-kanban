@@ -7,7 +7,7 @@ import {
   ConfirmButton,
   CancelButton,
 } from "./PopExit.styled"
-export default function PopExit() {
+export default function PopExit({ onConfirm = () => {}, onCancel = () => {} }) {
   return (
     <ExitPopup id="popExit">
   <ExitContainer>
@@ -16,16 +16,14 @@ export default function PopExit() {
 
       <form id="formExit">
         <FormGroup>
-          <ConfirmButton id="exitYes" type="button">
+          <ConfirmButton id="exitYes" type="button" onClick={onConfirm}>
             Да, выйти
           </ConfirmButton>
 
           <CancelButton
             id="exitNo"
             type="button"
-            onClick={() => {
-              window.location.hash = "";
-            }}
+            onClick={onCancel}
           >
             Нет, остаться
           </CancelButton>

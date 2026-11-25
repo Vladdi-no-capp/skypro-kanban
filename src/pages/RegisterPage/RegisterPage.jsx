@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import {
   AuthCard,
   AuthForm,
@@ -46,3 +45,4 @@ export default function RegisterPage({ onLogin }) {
     </AuthPage>
   );
 }
+import { useNavigate } from "react-router-dom";

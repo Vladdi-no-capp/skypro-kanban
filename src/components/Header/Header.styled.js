@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const HeaderWrapper = styled.header`
   width: 100%;
@@ -36,7 +37,7 @@ export const HeaderNav = styled.nav`
   justify-content: center;
 `;
 
-export const NewTaskLink = styled.a`
+export const NewTaskLink = styled(Link)`
   width: 178px;
   height: 30px;
   margin-right: 20px;
@@ -67,7 +68,10 @@ export const NewTaskLink = styled.a`
   }
 `;
 
-export const UserLink = styled.a`
+export const UserLink = styled.button`
+  padding: 0;
+  border: 0;
+  background: transparent;
   height: 20px;
   display: flex;
   flex-wrap: nowrap;

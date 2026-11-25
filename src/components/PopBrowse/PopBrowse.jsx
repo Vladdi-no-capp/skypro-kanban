@@ -1,8 +1,11 @@
 import Calendar from "../Calendar/Calendar.jsx";
+import { useNavigate } from "react-router-dom";
 
 const statuses = ["Без статуса", "Нужно сделать", "В работе", "Тестирование", "Готово"];
 
 export default function PopBrowse({ heading = "Название задачи" }) {
+  const navigate = useNavigate();
+
   return (
     <div className="pop-browse" id="popBrowse">
       <div className="pop-browse__container">
@@ -59,9 +62,7 @@ export default function PopBrowse({ heading = "Название задачи" })
               <button
                 className="btn-browse__close _btn-bg _hover01"
                 type="button"
-                onClick={() => {
-                  window.location.hash = "";
-                }}
+                onClick={() => navigate("/")}
               >
                 Закрыть
               </button>

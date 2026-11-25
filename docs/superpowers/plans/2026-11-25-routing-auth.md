@@ -72,7 +72,7 @@
 - [x] Run the focused route test and verify each new assertion fails for the expected missing behavior.
 - [x] Implement the seven pages, reusing `Main`, `Header`, `PopNewCard`, `PopBrowse`, and `PopExit` where suitable.
 - [x] Run focused and complete tests, then remove only duplication exposed by the passing tests.
-- [ ] Commit the page layer and its tests as one checkpoint.
+- [x] Commit the page layer and its tests as one checkpoint.
 
 ### Task 3: UI-driven authentication and route-aware board navigation
 
@@ -92,10 +92,10 @@
 - Consumes: React Router navigation context and `onLogout()`
 - Produces: link-based navigation to `/new-card`, `/card/:id`, and `/exit`
 
-- [ ] Add failing integration tests for login, card/new-task navigation without reload, cancel exit, and confirmed logout.
-- [ ] Run focused tests and verify failures identify old hash-link behavior or missing auth transitions.
-- [ ] Replace hash anchors/location mutation with `Link`, route-aware buttons, and callbacks.
-- [ ] Run focused tests and the whole suite; update old board tests only where router context is now a real runtime dependency.
+- [x] Add failing integration tests for login, card/new-task navigation without reload, cancel exit, and confirmed logout.
+- [x] Run focused tests and verify failures identify old hash-link behavior or missing auth transitions.
+- [x] Replace hash anchors/location mutation with `Link`, route-aware buttons, and callbacks.
+- [x] Run focused tests and the whole suite; update old board tests only where router context is now a real runtime dependency.
 - [ ] Commit the navigation and authentication flow as one checkpoint.
 
 ### Task 4: Card parameter behavior and final regression checks

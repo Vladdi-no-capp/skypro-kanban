@@ -1,6 +1,8 @@
 import { themeColors } from "../../theme.js";
 import styled, { keyframes } from "styled-components";
-export const CardButton = styled.a`
+import { Link } from "react-router-dom";
+
+export const CardButton = styled(Link)`
   width: 24px;
   height: 24px;
   display: flex;
@@ -14,6 +16,10 @@ export const CardButton = styled.a`
     border-radius: 50%;
     background-color: #94a6be;
   }
+`;
+
+export const CardTitleLink = styled(Link)`
+  color: inherit;
 `;
 
 export const CardContent = styled.div`

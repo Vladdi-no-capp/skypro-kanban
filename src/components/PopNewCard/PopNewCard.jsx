@@ -1,4 +1,5 @@
 import Calendar from "../Calendar/Calendar.jsx";
+import { Link } from "react-router-dom";
 
 export default function PopNewCard() {
   return (
@@ -7,9 +8,9 @@ export default function PopNewCard() {
         <div className="pop-new-card__block">
           <div className="pop-new-card__content">
             <h3 className="pop-new-card__ttl">Создание задачи</h3>
-            <a href="#" className="pop-new-card__close" aria-label="Закрыть">
+            <Link to="/" className="pop-new-card__close" aria-label="Закрыть">
               &#10006;
-            </a>
+            </Link>
             <div className="pop-new-card__wrap">
               <form className="pop-new-card__form form-new" id="formNewCard">
                 <div className="form-new__block">

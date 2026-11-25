@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const UserText = styled.p`
   font-size: 14px;
@@ -69,13 +70,17 @@ export const ThemeCheckbox = styled.input`
   }
 `;
 
-export const LogoutButton = styled.button`
+export const LogoutButton = styled(Link)`
   width: 72px;
   height: 30px;
   border: 1px solid #565eef;
   border-radius: 4px;
   background-color: transparent;
   color: #565eef;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
 
   &:hover {
     background-color: #33399b;

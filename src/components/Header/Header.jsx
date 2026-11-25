@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import PopUser from "../PopUser/PopUser.jsx";
 import { Container } from "../Common/Common.styled.js";
 import {
@@ -19,23 +20,23 @@ export default function Header() {
       <Container>
         <HeaderBlock>
           <Logo>
-            <a href="#" aria-label="На главную">
+            <Link to="/" aria-label="На главную">
               <img src="/images/logo.png" alt="Логотип Skypro" />
-            </a>
+            </Link>
           </Logo>
           <DarkLogo>
-            <a href="#" aria-label="На главную">
+            <Link to="/" aria-label="На главную">
               <img
                 src="/images/logo_dark.png"
                 alt="Логотип Skypro для тёмной темы"
               />
-            </a>
+            </Link>
           </DarkLogo>
           <HeaderNav aria-label="Основная навигация">
-            <NewTaskLink id="btnMainNew" href="#popNewCard">
+            <NewTaskLink id="btnMainNew" to="/new-card">
               Создать новую задачу
             </NewTaskLink>
-            <UserLink href="#user-set-target" onClick={() => setIsUserMenuOpen((isOpen) => !isOpen)}>
+            <UserLink type="button" onClick={() => setIsUserMenuOpen((isOpen) => !isOpen)}>
               Ivan Ivanov
             </UserLink>
             {isUserMenuOpen && <PopUser />}

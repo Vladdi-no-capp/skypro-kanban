@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, test } from "vitest";
-import { cleanup, render, screen } from "@testing-library/react";
+import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import App from "../App.jsx";
 import AppRoutes from "./AppRoutes.jsx";
@@ -24,6 +24,16 @@ function renderRoutesAt(path, { isAuth = false, onLogin, onLogout } = {}) {
       />
     </MemoryRouter>,
   );
+}
+
+function submitLogin() {
+  fireEvent.change(screen.getByLabelText("Электронная почта"), {
+    target: { value: "ivan@example.com" },
+  });
+  fireEvent.change(screen.getByLabelText("Пароль"), {
+    target: { value: "password" },
+  });
+  fireEvent.submit(screen.getByRole("button", { name: "Войти" }).closest("form"));
 }
 
 describe("application routes", () => {
@@ -90,5 +100,51 @@ describe("application routes", () => {
     expect(
       screen.getByRole("heading", { name: "Выйти из аккаунта?" }),
     ).toBeTruthy();
+  });
+
+  test("unlocks the board after login through the form", () => {
+    renderAt("/login");
+
+    submitLogin();
+
+    expect(screen.getByRole("navigation", { name: "Основная навигация" })).toBeTruthy();
+  });
+
+  test("opens the new-task route from the board without a reload", () => {
+    renderRoutesAt("/", { isAuth: true });
+
+    fireEvent.click(screen.getByRole("link", { name: "Создать новую задачу" }));
+
+    expect(screen.getByRole("heading", { name: "Создание задачи" })).toBeTruthy();
+  });
+
+  test("opens a card route from the board without a reload", () => {
+    renderRoutesAt("/", { isAuth: true });
+
+    fireEvent.click(screen.getAllByRole("link", { name: /Открыть/ })[0]);
+
+    expect(screen.getByRole("heading", { name: "Просмотр задачи" })).toBeTruthy();
+  });
+
+  test("keeps access when exit is cancelled", () => {
+    renderAt("/login");
+    submitLogin();
+    fireEvent.click(screen.getByRole("button", { name: "Ivan Ivanov" }));
+    fireEvent.click(screen.getByRole("link", { name: "Выйти" }));
+
+    fireEvent.click(screen.getByRole("button", { name: "Нет, остаться" }));
+
+    expect(screen.getByRole("navigation", { name: "Основная навигация" })).toBeTruthy();
+  });
+
+  test("revokes protected access when exit is confirmed", () => {
+    renderAt("/login");
+    submitLogin();
+    fireEvent.click(screen.getByRole("button", { name: "Ivan Ivanov" }));
+    fireEvent.click(screen.getByRole("link", { name: "Выйти" }));
+
+    fireEvent.click(screen.getByRole("button", { name: "Да, выйти" }));
+
+    expect(screen.getByRole("heading", { name: "Вход" })).toBeTruthy();
   });
 });

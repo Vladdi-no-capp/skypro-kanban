@@ -1,5 +1,6 @@
 import { afterEach, describe, expect, test } from "vitest";
 import { cleanup, fireEvent, render, screen,  } from "@testing-library/react";
+import { MemoryRouter } from "react-router-dom";
 import { cardList } from "../../data.js";
 import Header from "./Header/Header.jsx";
 import Main from "./Main/Main.jsx";
@@ -9,7 +10,11 @@ import Main from "./Main/Main.jsx";
 afterEach(cleanup);
 describe("Kanban board", () => {
   test("renders all columns in the supplied order with every task", () => {
-    const { container } = render(<Main />);
+    const { container } = render(
+      <MemoryRouter>
+        <Main />
+      </MemoryRouter>,
+    );
     const columnTitles = Array.from(
       container.querySelectorAll("h2"),
     ).map((title) => title.textContent);
@@ -30,9 +35,13 @@ cardList.forEach((card) => {
   });
 
   test("renders both logos and the header controls", () => {
-    render(<Header />);
+    render(
+      <MemoryRouter>
+        <Header />
+      </MemoryRouter>,
+    );
 
-    const userLink = screen.getByRole("link", { name: "Ivan Ivanov" });
+    const userLink = screen.getByRole("button", { name: "Ivan Ivanov" });
 
 expect(screen.queryByText("ivan.ivanov@gmail.com")).toBeNull();
 

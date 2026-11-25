@@ -27,10 +27,10 @@ test("renders the routed application without React warnings", () => {
 
 test("keeps popup buttons visually equivalent after JSX cleanup", () => {
   render(
-    <>
+    <MemoryRouter>
       <PopExit />
       <PopNewCard />
-    </>,
+    </MemoryRouter>,
   );
 
   const confirmExit = screen.getByRole("button", { name: "Да, выйти", hidden: true });
