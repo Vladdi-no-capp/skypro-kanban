@@ -2,14 +2,14 @@ import Calendar from "../Calendar/Calendar.jsx";
 
 const statuses = ["Без статуса", "Нужно сделать", "В работе", "Тестирование", "Готово"];
 
-export default function PopBrowse() {
+export default function PopBrowse({ heading = "Название задачи" }) {
   return (
     <div className="pop-browse" id="popBrowse">
       <div className="pop-browse__container">
         <div className="pop-browse__block">
           <div className="pop-browse__content">
             <div className="pop-browse__top-block">
-              <h3 className="pop-browse__ttl">Название задачи</h3>
+              <h3 className="pop-browse__ttl">{heading}</h3>
               <div className="categories__theme theme-top _orange _active-category">
                 <p className="_orange">Web Design</p>
               </div>

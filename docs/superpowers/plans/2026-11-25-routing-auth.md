@@ -47,7 +47,7 @@
 - [x] Run `npm.cmd test -- src/routes/AppRoutes.test.jsx` and verify failures are caused by missing route components.
 - [x] Implement the router shell, authentication state wiring, and minimal route placeholders.
 - [x] Run the focused test and the complete suite; confirm both pass before refactoring.
-- [ ] Commit the routing shell and its tests as one checkpoint.
+- [x] Commit the routing shell and its tests as one checkpoint.
 
 ### Task 2: Seven pages and styled public states
 
@@ -68,10 +68,10 @@
 - Consumes: `onLogin()` on login/register pages, `onLogout()` on exit page
 - Produces: seven default-exported page components used by `AppRoutes`
 
-- [ ] Add failing tests for login, registration, authenticated board, new-task, exit, and 404 page behavior.
-- [ ] Run the focused route test and verify each new assertion fails for the expected missing behavior.
-- [ ] Implement the seven pages, reusing `Main`, `Header`, `PopNewCard`, `PopBrowse`, and `PopExit` where suitable.
-- [ ] Run focused and complete tests, then remove only duplication exposed by the passing tests.
+- [x] Add failing tests for login, registration, authenticated board, new-task, exit, and 404 page behavior.
+- [x] Run the focused route test and verify each new assertion fails for the expected missing behavior.
+- [x] Implement the seven pages, reusing `Main`, `Header`, `PopNewCard`, `PopBrowse`, and `PopExit` where suitable.
+- [x] Run focused and complete tests, then remove only duplication exposed by the passing tests.
 - [ ] Commit the page layer and its tests as one checkpoint.
 
 ### Task 3: UI-driven authentication and route-aware board navigation
