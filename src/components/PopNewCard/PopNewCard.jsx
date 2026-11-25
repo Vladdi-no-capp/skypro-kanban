@@ -1,7 +1,14 @@
 import Calendar from "../Calendar/Calendar.jsx";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function PopNewCard() {
+  const navigate = useNavigate();
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    navigate("/");
+  };
+
   return (
     <div className="pop-new-card" id="popNewCard">
       <div className="pop-new-card__container">
@@ -12,7 +19,11 @@ export default function PopNewCard() {
               &#10006;
             </Link>
             <div className="pop-new-card__wrap">
-              <form className="pop-new-card__form form-new" id="formNewCard">
+              <form
+                className="pop-new-card__form form-new"
+                id="formNewCard"
+                onSubmit={handleSubmit}
+              >
                 <div className="form-new__block">
                   <label htmlFor="formTitle" className="subttl">
                     Название задачи

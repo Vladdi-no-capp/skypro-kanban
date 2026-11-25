@@ -154,6 +154,17 @@ describe("application routes", () => {
     expect(screen.getByRole("heading", { name: "Создание задачи" })).toBeTruthy();
   });
 
+  test("submits a new task without a native page reload", () => {
+    renderRoutesAt("/new-card", { isAuth: true });
+
+    const submitWasNotCancelled = fireEvent.submit(
+      document.getElementById("formNewCard"),
+    );
+
+    expect(submitWasNotCancelled).toBe(false);
+    expect(screen.getByRole("navigation", { name: "Основная навигация" })).toBeTruthy();
+  });
+
   test("opens a card route from the board without a reload", () => {
     renderRoutesAt("/", { isAuth: true });
 
@@ -197,5 +208,16 @@ describe("application routes", () => {
     fireEvent.click(screen.getByRole("button", { name: "Открыть карточку 2" }));
 
     expect(screen.getByText("ID задачи: 2")).toBeTruthy();
+  });
+
+  test("shows the board data for a known card id", () => {
+    renderRoutesAt("/card/2", { isAuth: true });
+
+    expect(screen.getByText("Изучить стратегию конкуретнтов")).toBeTruthy();
+    expect(screen.getAllByText("Research").length).toBeGreaterThan(0);
+    expect(
+      screen.getByText("Тестирование").closest("[aria-current='true']"),
+    ).toBeTruthy();
+    expect(screen.getByText("21.10.26")).toBeTruthy();
   });
 });
