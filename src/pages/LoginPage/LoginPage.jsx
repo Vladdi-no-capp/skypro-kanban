@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import {
   AuthCard,
   AuthForm,
@@ -41,4 +42,3 @@ export default function LoginPage({ onLogin }) {
     </AuthPage>
   );
 }
-import { useNavigate } from "react-router-dom";

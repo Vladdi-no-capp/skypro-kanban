@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 const statuses = ["Без статуса", "Нужно сделать", "В работе", "Тестирование", "Готово"];
 
-export default function PopBrowse({ heading = "Название задачи" }) {
+export default function PopBrowse({ heading = "Название задачи", taskId }) {
   const navigate = useNavigate();
 
   return (
@@ -12,7 +12,10 @@ export default function PopBrowse({ heading = "Название задачи" })
         <div className="pop-browse__block">
           <div className="pop-browse__content">
             <div className="pop-browse__top-block">
-              <h3 className="pop-browse__ttl">{heading}</h3>
+              <div>
+                <h3 className="pop-browse__ttl">{heading}</h3>
+                {taskId && <p className="pop-browse__task-id">ID задачи: {taskId}</p>}
+              </div>
               <div className="categories__theme theme-top _orange _active-category">
                 <p className="_orange">Web Design</p>
               </div>

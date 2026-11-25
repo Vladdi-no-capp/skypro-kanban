@@ -96,7 +96,7 @@
 - [x] Run focused tests and verify failures identify old hash-link behavior or missing auth transitions.
 - [x] Replace hash anchors/location mutation with `Link`, route-aware buttons, and callbacks.
 - [x] Run focused tests and the whole suite; update old board tests only where router context is now a real runtime dependency.
-- [ ] Commit the navigation and authentication flow as one checkpoint.
+- [x] Commit the navigation and authentication flow as one checkpoint.
 
 ### Task 4: Card parameter behavior and final regression checks
 
@@ -109,8 +109,8 @@
 - Consumes: `useParams<{ id: string }>()`
 - Produces: visible text containing the current route ID
 
-- [ ] Add a failing test that navigates from `/card/1` to `/card/2` and expects the displayed ID to change.
-- [ ] Run the focused test and verify it fails because the current route ID is missing or stale.
-- [ ] Render the current `id` from `useParams` and document the new routes and demo authentication behavior.
-- [ ] Run `npm.cmd test` and `npm.cmd run build`; require zero failing tests and a successful production build.
+- [x] Add a failing test that navigates from `/card/1` to `/card/2` and expects the displayed ID to change.
+- [x] Run the focused test and verify it fails because the current route ID is missing or stale.
+- [x] Render the current `id` from `useParams` and document the new routes and demo authentication behavior.
+- [x] Run `npm.cmd test` and `npm.cmd run build`; require zero failing tests and a successful production build.
 - [ ] Review `git diff` for accidental edits, then commit the completed homework checkpoint if requested.

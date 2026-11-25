@@ -367,6 +367,12 @@
     font-weight: 600;
     line-height: 24px;
 }
+.pop-browse__task-id {
+    margin-top: 5px;
+    color: #94A6BE;
+    font-size: 12px;
+    line-height: 16px;
+}
 .pop-browse__wrap {
     display: flex;
     align-items: flex-start;

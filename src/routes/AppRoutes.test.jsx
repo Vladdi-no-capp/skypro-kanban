@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, test } from "vitest";
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
-import { MemoryRouter } from "react-router-dom";
+import { MemoryRouter, useNavigate } from "react-router-dom";
 import App from "../App.jsx";
 import AppRoutes from "./AppRoutes.jsx";
 
@@ -36,14 +36,42 @@ function submitLogin() {
   fireEvent.submit(screen.getByRole("button", { name: "Войти" }).closest("form"));
 }
 
-describe("application routes", () => {
-  test("redirects a signed-out visitor from the protected board to login", () => {
-    renderAt("/");
-
-    expect(
-      screen.getByRole("heading", { name: "Вход" }),
-    ).toBeTruthy();
+function submitRegistration() {
+  fireEvent.change(screen.getByLabelText("Имя"), {
+    target: { value: "Ivan" },
   });
+  fireEvent.change(screen.getByLabelText("Электронная почта"), {
+    target: { value: "ivan@example.com" },
+  });
+  fireEvent.change(screen.getByLabelText("Пароль"), {
+    target: { value: "password" },
+  });
+  fireEvent.submit(
+    screen.getByRole("button", { name: "Зарегистрироваться" }).closest("form"),
+  );
+}
+
+function CardRouteDriver() {
+  const navigate = useNavigate();
+
+  return (
+    <button type="button" onClick={() => navigate("/card/2")}>
+      Открыть карточку 2
+    </button>
+  );
+}
+
+describe("application routes", () => {
+  test.each(["/", "/exit", "/card/42", "/new-card"])(
+    "redirects a signed-out visitor from protected route %s to login",
+    (path) => {
+      renderAt(path);
+
+      expect(
+        screen.getByRole("heading", { name: "Вход" }),
+      ).toBeTruthy();
+    },
+  );
 
   test("renders a 404 page for an unknown address", () => {
     renderAt("/missing-page");
@@ -110,6 +138,14 @@ describe("application routes", () => {
     expect(screen.getByRole("navigation", { name: "Основная навигация" })).toBeTruthy();
   });
 
+  test("unlocks the board after registration through the form", () => {
+    renderAt("/register");
+
+    submitRegistration();
+
+    expect(screen.getByRole("navigation", { name: "Основная навигация" })).toBeTruthy();
+  });
+
   test("opens the new-task route from the board without a reload", () => {
     renderRoutesAt("/", { isAuth: true });
 
@@ -146,5 +182,20 @@ describe("application routes", () => {
     fireEvent.click(screen.getByRole("button", { name: "Да, выйти" }));
 
     expect(screen.getByRole("heading", { name: "Вход" })).toBeTruthy();
+  });
+
+  test("updates the displayed card id on every route transition", () => {
+    render(
+      <MemoryRouter initialEntries={["/card/1"]}>
+        <CardRouteDriver />
+        <AppRoutes isAuth onLogin={() => {}} onLogout={() => {}} />
+      </MemoryRouter>,
+    );
+
+    expect(screen.getByText("ID задачи: 1")).toBeTruthy();
+
+    fireEvent.click(screen.getByRole("button", { name: "Открыть карточку 2" }));
+
+    expect(screen.getByText("ID задачи: 2")).toBeTruthy();
   });
 });
