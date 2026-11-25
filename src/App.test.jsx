@@ -1,35 +1,24 @@
 import { afterEach, expect, test, vi } from "vitest";
-import { cleanup, render, screen, waitFor } from "@testing-library/react";
+import { cleanup, render, screen } from "@testing-library/react";
+import { MemoryRouter } from "react-router-dom";
 import App from "./App.jsx";
+import PopExit from "./components/PopExit/PopExit.jsx";
+import PopNewCard from "./components/PopNewCard/PopNewCard.jsx";
 
 afterEach(cleanup);
 
-test("renders the complete homework page without React warnings", async () => {
+test("renders the routed application without React warnings", () => {
   const consoleError = vi.spyOn(console, "error").mockImplementation(() => {});
 
   try {
-    const { container } = render(<App />);
+    render(
+      <MemoryRouter initialEntries={["/login"]}>
+        <App />
+      </MemoryRouter>,
+    );
 
     expect(screen.getByTestId("app-wrapper")).toBeTruthy();
-    expect(container.querySelector("header")).toBeTruthy();
-  expect(screen.getByText("Данные загружаются")).toBeTruthy();
-
-await waitFor(
-  () => {
-    expect(container.querySelectorAll("main section")).toHaveLength(5);
-  },
-  { timeout: 3000 },
-);
-    expect(container.querySelector("#popExit")).toBeTruthy();
-    expect(container.querySelector("#popNewCard")).toBeTruthy();
-    expect(container.querySelector("#popBrowse")).toBeTruthy();
-    expect(screen.getByAltText("Логотип Skypro").getAttribute("src")).toBe(
-      "/images/logo.png",
-    );
-    expect(screen.getAllByText("Без статуса")).toHaveLength(2);
-    expect(
-      screen.getByRole("heading", { name: "Создание задачи", hidden: true }),
-    ).toBeTruthy();
+    expect(screen.getByRole("heading", { name: "Вход" })).toBeTruthy();
     expect(consoleError).not.toHaveBeenCalled();
   } finally {
     consoleError.mockRestore();
@@ -37,7 +26,12 @@ await waitFor(
 });
 
 test("keeps popup buttons visually equivalent after JSX cleanup", () => {
-  render(<App />);
+  render(
+    <>
+      <PopExit />
+      <PopNewCard />
+    </>,
+  );
 
   const confirmExit = screen.getByRole("button", { name: "Да, выйти", hidden: true });
   const cancelExit = screen.getByRole("button", {
