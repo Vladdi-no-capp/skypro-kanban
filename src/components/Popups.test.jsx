@@ -1,5 +1,6 @@
 import { afterEach, describe, expect, test } from "vitest";
 import { cleanup, render, screen } from "@testing-library/react";
+import { MemoryRouter } from "react-router-dom";
 import PopBrowse from "./PopBrowse/PopBrowse.jsx";
 import PopExit from "./PopExit/PopExit.jsx";
 import PopNewCard from "./PopNewCard/PopNewCard.jsx";
@@ -9,11 +10,11 @@ afterEach(cleanup);
 describe("Kanban popups", () => {
   test("renders supplied popup copy and two reusable calendars", () => {
     const { container } = render(
-      <>
+      <MemoryRouter>
         <PopNewCard />
         <PopBrowse />
         <PopExit />
-      </>,
+      </MemoryRouter>,
     );
 
     expect(
@@ -31,10 +32,10 @@ describe("Kanban popups", () => {
 
   test("connects form labels and uses React boolean properties", () => {
     const { container } = render(
-      <>
+      <MemoryRouter>
         <PopNewCard />
         <PopBrowse />
-      </>,
+      </MemoryRouter>,
     );
 
     const titleInput = screen.getByLabelText("Название задачи");

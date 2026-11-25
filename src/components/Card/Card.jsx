@@ -7,6 +7,7 @@ import {
   CardContent,
   CardDate,
   CardTitle,
+  CardTitleLink,
 } from "./Card.styled.js";
 
 export default function Card({ task }) {
@@ -19,16 +20,16 @@ export default function Card({ task }) {
           <CardTheme $topic={task.topic}>
             <p>{task.topic}</p>
           </CardTheme>
-          <CardButton href="#popBrowse" aria-label={`Открыть ${task.title}`}>
+          <CardButton to={`/card/${task.id}`} aria-label={`Открыть ${task.title}`}>
             <div />
             <div />
             <div />
           </CardButton>
         </CardGroup>
         <CardContent>
-          <a href="#popBrowse">
+          <CardTitleLink to={`/card/${task.id}`}>
             <CardTitle>{task.title}</CardTitle>
-          </a>
+          </CardTitleLink>
           <CardDate>
             <svg
               xmlns="http://www.w3.org/2000/svg"

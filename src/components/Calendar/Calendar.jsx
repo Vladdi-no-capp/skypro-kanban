@@ -9,7 +9,9 @@ const days = [
 
 const dayNames = ["пн", "вт", "ср", "чт", "пт", "сб", "вс"];
 
-export default function Calendar({ selectedDay = null, inputId }) {
+export default function Calendar({ selectedDay = null, selectedDate = "", inputId }) {
+  const selectedDateDay = selectedDate ? Number(selectedDate.split(".")[0]) : selectedDay;
+
   return (
     <div className="pop-new-card__calendar calendar">
       <p className="calendar__ttl subttl">Даты</p>
@@ -44,7 +46,7 @@ export default function Calendar({ selectedDay = null, inputId }) {
             {days.map((day, index) => {
               const isWeekend = index % 7 > 4;
               const isCurrent = !day.otherMonth && day.value === 8;
-              const isSelected = !day.otherMonth && day.value === selectedDay;
+              const isSelected = !day.otherMonth && day.value === selectedDateDay;
               const classes = [
                 "calendar__cell",
                 day.otherMonth ? "_other-month" : "_cell-day",
@@ -63,12 +65,12 @@ export default function Calendar({ selectedDay = null, inputId }) {
             })}
           </div>
         </div>
-        <input type="hidden" id={inputId} value="08.09.2023" readOnly />
+        <input type="hidden" id={inputId} value={selectedDate || "08.09.2023"} readOnly />
         <div className="calendar__period">
           <p className="calendar__p date-end">
-            {selectedDay ? "Срок исполнения: " : "Выберите срок исполнения "}
-            <span className="date-control">{selectedDay ? "09.09.23" : ""}</span>
-            {!selectedDay && "."}
+            {selectedDateDay ? "Срок исполнения: " : "Выберите срок исполнения "}
+            <span className="date-control">{selectedDate || (selectedDay ? "09.09.23" : "")}</span>
+            {!selectedDateDay && "."}
           </p>
         </div>
       </div>

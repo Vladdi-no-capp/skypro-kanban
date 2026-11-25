@@ -1,17 +1,29 @@
 import Calendar from "../Calendar/Calendar.jsx";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function PopNewCard() {
+  const navigate = useNavigate();
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    navigate("/");
+  };
+
   return (
     <div className="pop-new-card" id="popNewCard">
       <div className="pop-new-card__container">
         <div className="pop-new-card__block">
           <div className="pop-new-card__content">
             <h3 className="pop-new-card__ttl">Создание задачи</h3>
-            <a href="#" className="pop-new-card__close" aria-label="Закрыть">
+            <Link to="/" className="pop-new-card__close" aria-label="Закрыть">
               &#10006;
-            </a>
+            </Link>
             <div className="pop-new-card__wrap">
-              <form className="pop-new-card__form form-new" id="formNewCard">
+              <form
+                className="pop-new-card__form form-new"
+                id="formNewCard"
+                onSubmit={handleSubmit}
+              >
                 <div className="form-new__block">
                   <label htmlFor="formTitle" className="subttl">
                     Название задачи
