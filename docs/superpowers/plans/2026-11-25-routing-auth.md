@@ -113,4 +113,4 @@
 - [x] Run the focused test and verify it fails because the current route ID is missing or stale.
 - [x] Render the current `id` from `useParams` and document the new routes and demo authentication behavior.
 - [x] Run `npm.cmd test` and `npm.cmd run build`; require zero failing tests and a successful production build.
-- [ ] Review `git diff` for accidental edits, then commit the completed homework checkpoint if requested.
+- [x] Review `git diff` for accidental edits, then commit the completed homework checkpoint if requested.
